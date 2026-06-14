@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="FIRAS PERFUME">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#EFE6D6"/>
+      <stop offset="1" stop-color="#E2D4BE"/>
+    </linearGradient>
+    <radialGradient id="vg" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0.55" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.28"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  
+  <defs>
+    <linearGradient id="b600441" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a2f1e"/>
+      <stop offset="1" stop-color="#241a0a"/>
+    </linearGradient>
+    <linearGradient id="b600441c" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D4AF37"/>
+      <stop offset="1" stop-color="#B8860B"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="600" cy="452.4" rx="106.39999999999999" ry="17.099999999999998" fill="#000" opacity="0.12"/>
+  <rect x="569.6" y="51.5" width="60.8" height="64.6" rx="9.5" fill="url(#b600441c)"/>
+  <rect x="582.9" y="97.1" width="34.199999999999996" height="22.799999999999997" fill="#B8860B" opacity="0.85"/>
+  <rect x="486" y="108.5" width="228" height="332.5" rx="30.4" fill="url(#b600441)"/>
+  <path d="M505 214.9 Q600 161.7 695 214.9"
+        stroke="#D4AF37" stroke-width="2.6599999999999997" fill="none" opacity="0.6"/>
+  <path d="M505 291.375 Q600 241.5 695 291.375"
+        stroke="#D4AF37" stroke-width="2.28" fill="none" opacity="0.4"/>
+  <rect x="503.1" y="125.6" width="26.599999999999998" height="286.9" rx="13.299999999999999" fill="#fff" opacity="0.12"/>
+  
+  <text x="600" y="567" text-anchor="middle" font-family="Georgia, serif" font-size="32" letter-spacing="4" fill="#1A1A1A" opacity="0.85">FIRAS PERFUME</text>
+  <text x="600" y="598.5" text-anchor="middle" font-family="Georgia, serif" font-size="14" letter-spacing="6" fill="#1A1A1A" opacity="0.55">PREMIUM INSPIRED FRAGRANCES</text>
+</svg>

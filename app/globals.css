@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-onyx: #1a1a1a;
+    --color-gold: #b8860b;
+    --color-teal: #8fcfc8;
+    --color-ivory: #f7f2e8;
+  }
+
+  /* Border-box everywhere so padding never widens an element past its track.
+     (Tailwind preflight already does this; kept explicit per the spec.) */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Horizontal-overflow guard lives on <html> only. Putting overflow-x on
+     <body> would make its overflow-y compute to `auto`, turning body into a
+     scroll container and breaking the sticky header — so we clip at the root. */
+  html {
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-ivory text-onyx font-body antialiased;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Media must never exceed its container on small screens. */
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    /* Long product names / titles wrap instead of forcing overflow. */
+    overflow-wrap: break-word;
+  }
+
+  /* Visible focus ring for keyboard users across all interactive elements */
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-ivory;
+  }
+}
+
+@layer components {
+  /* Responsive gutters: 16px on ≤375px phones (incl. iPhone SE), 20px on
+     standard/large phones, 24px on tablets, full 48px on desktop (unchanged). */
+  .container-px {
+    @apply mx-auto w-full max-w-full px-4 xs:px-5 md:px-6 lg:max-w-container lg:px-12;
+  }
+
+  .label-caps {
+    @apply font-body text-[11px] font-medium uppercase tracking-[0.22em];
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
