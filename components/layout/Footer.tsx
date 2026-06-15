@@ -75,9 +75,9 @@ export function Footer() {
       <div className="bg-onyx text-ivory/70">
         <div className="container-px flex flex-col items-center justify-between gap-2 py-4 text-center text-xs sm:flex-row sm:text-left">
           <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
-          <p className="inline-flex items-center gap-2">
-            <PalestineFlag className="h-3.5 w-7 shrink-0 rounded-[2px] ring-1 ring-white/20" />
-            Made in Palestine · {SITE.location} · +974 77833024
+          <p className="inline-flex items-start justify-center gap-2 sm:items-center">
+            <PalestineFlag className="mt-0.5 h-3.5 w-7 shrink-0 rounded-[2px] ring-1 ring-white/20 sm:mt-0" />
+            <span>Made in Palestine · {SITE.location} · +974 77833024</span>
           </p>
         </div>
       </div>

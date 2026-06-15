@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
 
@@ -22,6 +22,13 @@ export function Drawer({
   className,
 }: DrawerProps) {
   const panelRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Portals can only render on the client; wait until mount to avoid
+  // a server/client hydration mismatch.
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Esc to close + lock body scroll while open
   useEffect(() => {
@@ -40,7 +47,7 @@ export function Drawer({
     };
   }, [open, onClose]);
 
-  if (typeof document === 'undefined') return null;
+  if (!mounted) return null;
 
   return createPortal(
     <div

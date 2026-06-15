@@ -17,7 +17,8 @@ export function CategoryExplorer() {
     <section className="border-y border-onyx/10 bg-[#f1ead9]">
       <div className="container-px py-14 sm:py-20">
         <SectionHeading eyebrow="Elevate Your Scent Journey" title="Explore by Note" />
-        <div className="flex justify-start gap-8 overflow-x-auto pb-2 hide-scrollbar sm:justify-center">
+        <div className="overflow-x-auto py-3 hide-scrollbar">
+          <div className="mx-auto flex w-max gap-8">
           {categories.map((cat) => (
             <Link
               key={cat.note}
@@ -37,6 +38,7 @@ export function CategoryExplorer() {
               <span className="label-caps text-[10px] text-gold">Explore</span>
             </Link>
           ))}
+          </div>
         </div>
       </div>
     </section>
