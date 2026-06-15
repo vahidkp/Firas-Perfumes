@@ -58,11 +58,11 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="pt-4">
         <Link href={`/product/${product.slug}`}>
-          <h3 className="break-words font-display text-base tracking-wide transition-colors hover:text-gold">
+          <h3 className="line-clamp-2 min-h-[2.75rem] break-words font-display text-base leading-snug tracking-wide transition-colors hover:text-gold">
             {product.name}
           </h3>
         </Link>
-        <p className="mt-1 break-words text-[11px] uppercase tracking-[0.16em] text-grey">
+        <p className="mt-1 line-clamp-2 min-h-[1.9rem] break-words text-[11px] uppercase leading-snug tracking-[0.16em] text-grey">
           {product.inspiredBy ? `Inspired by ${product.inspiredBy}` : 'FIRAS Attar Oil'}
         </p>
         <p className="mt-2 text-sm font-medium text-onyx">{formatPrice(product.price)}</p>

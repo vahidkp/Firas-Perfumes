@@ -21,7 +21,11 @@ export function Carousel({
   showDots = false,
   className,
 }: CarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', dragFree: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'start',
+    dragFree: true,
+    containScroll: 'trimSnaps',
+  });
   const [selected, setSelected] = useState(0);
   const [snaps, setSnaps] = useState<number[]>([]);
 

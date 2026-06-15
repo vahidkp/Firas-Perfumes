@@ -4,6 +4,17 @@ import { Logo } from '@/components/ui/Logo';
 import { NewsletterForm } from './NewsletterForm';
 import { SITE, whatsappLink } from '@/lib/site';
 
+function PalestineFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 6 3" role="img" aria-label="Flag of Palestine" className={className}>
+      <rect fill="#009639" width="6" height="3" />
+      <rect fill="#FFF" width="6" height="2" />
+      <rect width="6" height="1" />
+      <path fill="#ED2E38" d="M0,0l2,1.5L0,3Z" />
+    </svg>
+  );
+}
+
 const legal = ['Privacy Policy', 'Terms & Conditions', 'Cookie Policy', 'Refund Policy'];
 const service = ['Contact Us', 'My Account', 'FAQ', 'Order via WhatsApp'];
 const about = ['Our Story', 'Misk & Attar Oils', 'Made in Palestine', 'Press'];
@@ -32,7 +43,7 @@ export function Footer() {
         <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_1fr_1.5fr] lg:gap-x-10 lg:gap-y-12">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Logo tone="onyx" className="h-16 w-auto" />
+            <Logo className="h-20 w-auto" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-grey">
               Premium-quality fragrances inspired by the world&apos;s most iconic scents —
               crafted with care and bottled with pride in Palestine.
@@ -65,7 +76,8 @@ export function Footer() {
         <div className="container-px flex flex-col items-center justify-between gap-2 py-4 text-center text-xs sm:flex-row sm:text-left">
           <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
           <p className="inline-flex items-center gap-2">
-            <span aria-hidden>🇵🇸</span> Made in Palestine · {SITE.location} · +974 77833024
+            <PalestineFlag className="h-3.5 w-7 shrink-0 rounded-[2px] ring-1 ring-white/20" />
+            Made in Palestine · {SITE.location} · +974 77833024
           </p>
         </div>
       </div>

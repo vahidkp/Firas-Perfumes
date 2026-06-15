@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, Search, User, Heart, ShoppingBag, X } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { Drawer } from '@/components/ui/Drawer';
+import { SearchOverlay } from '@/components/layout/SearchOverlay';
 import { NAV_LINKS, SITE, whatsappLink } from '@/lib/site';
 import { useCart } from '@/lib/store/cart';
 import { useWishlist } from '@/lib/store/wishlist';
@@ -40,6 +41,7 @@ function IconLink({
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const mounted = useMounted();
   const cartCount = useCart((s) => s.totalCount());
   const wishCount = useWishlist((s) => s.ids.length);
@@ -59,13 +61,13 @@ export function Header() {
             >
               <Menu className="h-5 w-5" aria-hidden />
             </button>
-            <IconLink href="/shop" label="Search fragrances">
+            <IconLink onClick={() => setSearchOpen(true)} label="Search fragrances">
               <Search className="h-5 w-5" aria-hidden />
             </IconLink>
           </div>
 
           <Link href="/" aria-label="FIRAS Perfume home" className="min-w-0 justify-self-center">
-            <Logo className="h-10 w-auto xs:h-12 sm:h-14" />
+            <Logo className="h-12 w-auto xs:h-14 sm:h-16" />
           </Link>
 
           <div className="flex items-center justify-end gap-0 xs:gap-0.5">
@@ -90,7 +92,7 @@ export function Header() {
         {/* Primary nav (desktop) */}
         <nav
           aria-label="Primary"
-          className="hidden items-center justify-center gap-8 border-t border-onyx/10 py-3 md:flex"
+          className="hidden items-center justify-center gap-8 py-3 md:flex"
         >
           {NAV_LINKS.map((link) => (
             <Link
@@ -112,7 +114,7 @@ export function Header() {
         label="Menu"
       >
         <div className="flex items-center justify-between border-b border-gold/30 px-5 py-4">
-          <Logo className="h-11 w-auto" />
+          <Logo className="h-14 w-auto" />
           <button
             type="button"
             aria-label="Close menu"
@@ -142,6 +144,8 @@ export function Header() {
           <p className="mt-1">{SITE.location}</p>
         </div>
       </Drawer>
+
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

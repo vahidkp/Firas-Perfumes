@@ -26,7 +26,9 @@ export function HeroBanner({
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        // On narrow screens the wide image is cropped to a tall frame — bias the
+        // focal point toward the bottle so it stays in view; centred on desktop.
+        className="object-cover object-[68%_center] sm:object-center"
       />
       {/* bottom-weighted scrim — darkens behind the text for legibility while
           keeping the top of the frame airy and editorial */}

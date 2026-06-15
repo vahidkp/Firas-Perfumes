@@ -28,7 +28,7 @@ const config: Config = {
         body: ['var(--font-body)', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
-        container: '1280px',
+        container: '1440px',
       },
       keyframes: {
         'fade-up': {

@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ShopFilterBar } from '@/components/shop/ShopFilterBar';
+import { FilterSidebar, ShopToolbar } from '@/components/shop/ShopFilterBar';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { Button } from '@/components/ui/Button';
 import { products } from '@/data/products';
@@ -10,7 +10,10 @@ import type { Collection, Product, ScentNote } from '@/lib/types';
 
 type SearchParams = { [key: string]: string | string[] | undefined };
 
-function titleFor(collection?: string): string {
+function titleFor(params: SearchParams): string {
+  const q = (params.q as string | undefined)?.trim();
+  if (q) return `Search: “${q}”`;
+  const collection = params.collection as string | undefined;
   if (collection && collection in COLLECTION_LABELS) {
     return COLLECTION_LABELS[collection as Collection];
   }
@@ -22,7 +25,7 @@ export function generateMetadata({
 }: {
   searchParams: SearchParams;
 }): Metadata {
-  const title = titleFor(searchParams.collection as string | undefined);
+  const title = titleFor(searchParams);
   return {
     title,
     description: `Shop ${title} from FIRAS Perfume — premium inspired fragrances and Misk attar oils, crafted with high-quality ingredients. Made in Palestine.`,
@@ -34,7 +37,15 @@ function filterProducts(params: SearchParams): Product[] {
   const collection = params.collection as string | undefined;
   const note = params.note as string | undefined;
   const sort = params.sort as string | undefined;
+  const q = (params.q as string | undefined)?.trim().toLowerCase();
 
+  if (q) {
+    filtered = filtered.filter(
+      (p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.inspiredBy?.toLowerCase().includes(q)
+    );
+  }
   if (collection) filtered = filtered.filter((p) => p.collection === collection);
   if (note) {
     filtered = filtered.filter((p) =>
@@ -63,7 +74,7 @@ function filterProducts(params: SearchParams): Product[] {
 
 export default function ShopPage({ searchParams }: { searchParams: SearchParams }) {
   const filtered = filterProducts(searchParams);
-  const title = titleFor(searchParams.collection as string | undefined);
+  const title = titleFor(searchParams);
 
   return (
     <>
@@ -89,24 +100,38 @@ export default function ShopPage({ searchParams }: { searchParams: SearchParams 
         </div>
       </section>
 
-      <Suspense fallback={<div className="h-16 border-y border-onyx/10" />}>
-        <ShopFilterBar resultCount={filtered.length} />
-      </Suspense>
+      <section className="container-px py-10 lg:py-12">
+        <div className="lg:grid lg:grid-cols-[15rem_1fr] lg:gap-10 xl:grid-cols-[16rem_1fr]">
+          {/* Desktop sidebar */}
+          <aside className="hidden lg:block">
+            <div className="lg:sticky lg:top-28">
+              <Suspense fallback={null}>
+                <FilterSidebar />
+              </Suspense>
+            </div>
+          </aside>
 
-      <section className="container-px py-12">
-        {filtered.length === 0 ? (
-          <div className="flex flex-col items-center gap-5 py-20 text-center">
-            <h2 className="font-display text-2xl">No fragrances match your filters</h2>
-            <p className="max-w-sm text-sm text-grey">
-              Try adjusting or clearing your filters to see the full collection.
-            </p>
-            <Button href="/shop" variant="secondary">
-              Clear Filters
-            </Button>
+          {/* Toolbar + grid */}
+          <div className="min-w-0">
+            <Suspense fallback={<div className="mb-8 h-12 border-b border-onyx/10" />}>
+              <ShopToolbar resultCount={filtered.length} />
+            </Suspense>
+
+            {filtered.length === 0 ? (
+              <div className="flex flex-col items-center gap-5 py-20 text-center">
+                <h2 className="font-display text-2xl">No fragrances match your filters</h2>
+                <p className="max-w-sm text-sm text-grey">
+                  Try adjusting or clearing your filters to see the full collection.
+                </p>
+                <Button href="/shop" variant="secondary">
+                  Clear Filters
+                </Button>
+              </div>
+            ) : (
+              <ProductGrid products={filtered} />
+            )}
           </div>
-        ) : (
-          <ProductGrid products={filtered} />
-        )}
+        </div>
       </section>
     </>
   );
