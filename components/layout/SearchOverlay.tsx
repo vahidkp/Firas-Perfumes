@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { Search, X } from 'lucide-react';
 import { products } from '@/data/products';
 import { formatPrice, cn } from '@/lib/utils';
+import { useMounted } from '@/lib/use-mounted';
 
 export function SearchOverlay({
   open,
@@ -19,6 +20,7 @@ export function SearchOverlay({
   const [query, setQuery] = useState('');
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const mounted = useMounted();
 
   // Esc to close, lock scroll, focus the input, reset on close.
   useEffect(() => {
@@ -58,7 +60,9 @@ export function SearchOverlay({
     onClose();
   }
 
-  if (typeof document === 'undefined') return null;
+  // Render the portal only after mount so the server and the client's first
+  // paint agree (both render nothing), avoiding a hydration mismatch.
+  if (!mounted) return null;
 
   return createPortal(
     <div

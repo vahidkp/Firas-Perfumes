@@ -72,6 +72,15 @@ export function Footer() {
         </div>
       </div>
 
+      <div className="container-px border-t border-onyx/10 py-6">
+        <p className="mx-auto max-w-3xl text-center text-xs leading-relaxed text-grey">
+          All FIRAS Perfume fragrances are premium-quality scents <em>inspired by</em>{' '}
+          famous original perfumes. They are not the original branded products and are
+          not affiliated with, endorsed by, or produced by the original houses. All
+          brand names and trademarks belong to their respective owners.
+        </p>
+      </div>
+
       <div className="bg-onyx text-ivory/70">
         <div className="container-px flex flex-col items-center justify-between gap-2 py-4 text-center text-xs sm:flex-row sm:text-left">
           <p>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>

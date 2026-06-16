@@ -1,20 +1,34 @@
 import type { Product } from '@/lib/types';
 
 /**
- * FIRAS catalogue — 12 SKUs from the Brand & Design Audit.
- * Men's & Women's lines share a master bottle/box image per gender; Misk attars
- * use the oil-bottle art. Swap `images` for retouched per-SKU photos when ready
- * (see public/images/products and IMAGE_PROMPTS.md).
+ * FIRAS catalogue — the 11 SKUs supplied by the client (4 men, 5 women, 2 Misk).
+ *
+ * Image status (Jun 2026): real client product photos are wired into the two
+ * Misk attars plus two flagship men's and two women's SKUs. The remaining SKUs
+ * still use the SVG placeholders until the client's retouched photos arrive —
+ * men & women lines share one bottle/box design per gender, so the same master
+ * art applies across each line.
  */
 
+// --- Placeholder artwork (awaiting client photos) ---
 const MEN_BOTTLE = '/images/products/men-bottle.svg';
 const MEN_BOX = '/images/products/men-box.svg';
 const MEN_LIFESTYLE = '/images/products/men-lifestyle.svg';
 const WOMEN_BOTTLE = '/images/products/women-bottle.svg';
 const WOMEN_BOX = '/images/products/women-box.svg';
 const WOMEN_LIFESTYLE = '/images/products/women-lifestyle.svg';
-const MISK_BOTTLE = '/images/products/misk-bottle.svg';
-const MISK_BOX = '/images/products/misk-box.svg';
+
+// --- Real client product photography (shared per gendered line) ---
+const MEN_REAL = [
+  '/images/products/men-bottle.jpg',
+  '/images/products/men-bottle-alt.jpg',
+  '/images/products/men-box.jpg',
+];
+const WOMEN_REAL = [
+  '/images/products/women-bottle.jpg',
+  '/images/products/women-bottle-alt.jpg',
+  '/images/products/women-box.jpg',
+];
 
 export const products: Product[] = [
   // ---------------- Men's Collection ----------------
@@ -31,7 +45,7 @@ export const products: Product[] = [
     },
     price: 95,
     sizesMl: [50, 100],
-    images: [MEN_BOTTLE, MEN_BOX, MEN_LIFESTYLE],
+    images: MEN_REAL,
     description:
       'A crisp, aquatic interpretation inspired by Giorgio Armani Acqua di Giò — bright citrus opening over a clean woody-musk drydown, crafted with premium ingredients for all-day wear.',
     badges: ['Bestseller'],
@@ -67,7 +81,7 @@ export const products: Product[] = [
     },
     price: 130,
     sizesMl: [50, 100],
-    images: [MEN_BOTTLE, MEN_BOX, MEN_LIFESTYLE],
+    images: MEN_REAL,
     description:
       'Our flagship men’s fragrance, a rich woody-fruity character inspired by Creed Aventus — refined, long-lasting and unmistakably regal.',
     badges: ['Bestseller'],
@@ -101,7 +115,10 @@ export const products: Product[] = [
     },
     price: 50,
     sizesMl: [12],
-    images: [MISK_BOTTLE, MISK_BOX],
+    images: [
+      '/images/products/misk-oud-al-karam.jpg',
+      '/images/products/misk-oud-al-karam-2.jpg',
+    ],
     description:
       'A concentrated Arabian oud attar oil — pure, alcohol-free and intensely long-lasting. A single touch carries the noble warmth of oud through the entire day.',
     badges: ['Bestseller'],
@@ -121,7 +138,7 @@ export const products: Product[] = [
     },
     price: 110,
     sizesMl: [50, 100],
-    images: [WOMEN_BOTTLE, WOMEN_BOX, WOMEN_LIFESTYLE],
+    images: WOMEN_REAL,
     description:
       'A bold, sensual floral inspired by Carolina Herrera Good Girl — jasmine and tonka over a warm, addictive cocoa-amber base.',
     badges: ['Bestseller'],
@@ -157,7 +174,7 @@ export const products: Product[] = [
     },
     price: 125,
     sizesMl: [50, 100],
-    images: [WOMEN_BOTTLE, WOMEN_BOX, WOMEN_LIFESTYLE],
+    images: WOMEN_REAL,
     description:
       'A timeless aldehydic floral inspired by Chanel No. 5 — an elegant bouquet of rose and jasmine with a refined, classic musk drydown.',
     badges: ['Bestseller'],
@@ -209,26 +226,10 @@ export const products: Product[] = [
     },
     price: 45,
     sizesMl: [12],
-    images: [MISK_BOTTLE, MISK_BOX],
+    images: ['/images/products/misk-al-tahara.jpg'],
     description:
       'A pure white musk attar — clean, soft and powdery. This gentle, alcohol-free oil is treasured for its purity and delicate, comforting trail.',
     badges: ['New'],
-  },
-  {
-    id: 'p12',
-    slug: 'rose-attar-royale',
-    name: 'Rose Attar Royale',
-    collection: 'misk',
-    scentNotes: {
-      top: ['floral'],
-      middle: ['floral', 'oud'],
-      base: ['amber', 'musk'],
-    },
-    price: 55,
-    sizesMl: [12],
-    images: [MISK_BOTTLE, MISK_BOX],
-    description:
-      'A regal Taif rose attar laced with a whisper of oud — a velvety, concentrated oil that unfolds slowly into a warm amber-musk base.',
   },
 ];
 
